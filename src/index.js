@@ -12,7 +12,7 @@
 
 const Alexa = require('alexa-sdk');
 
-const APP_ID = "amzn1.ask.skill.2c5a40a0-3cef-4815-b74c-8432129291bf"; 
+const APP_ID = undefined;  //APP_ID here. 
 
 
 
@@ -55,7 +55,7 @@ const menu ={
         ['Sweet n Sour Chicken']
         ],
     4:[
-        ['Sausage Roll','Tuna May Baked Potato','Tomato Pasta','Turkey Sandwich'], // Mon
+        ['Sausage Roll','Tuna Mayo Baked Potato','Tomato Pasta','Turkey Sandwich'], // Mon
         ['Chinese Chicken Curry','Fish Fingers','VegeBall Wrap','Cheese Roll'], // Tues
         ['Cottage Pie','Creamy Ham Pasta','"Cheese and Tomato Pizza"','Chicken Sandwich'],//Wed
         ['Winter Vegetable Soup','Beef Burger Roll','Sweet Chilli Chicken','Vegetable Nuggets','Tuna Mayo Wrap'],//Thurs
@@ -117,7 +117,7 @@ const handlers = {
     if (req_week > 0)
     {
 
-       var mealsArray = menu[req_week][req_date.getDay()+1];
+       var mealsArray = menu[req_week][req_date.getDay()-1];
        // Get meals
        var mealString = "You can choose from ";
        
