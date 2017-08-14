@@ -4,8 +4,7 @@ An Alexa Skill to find out what's for lunch in Tayside schools.
 This is a simple app to show what you can do when re-using data about the city's services. 
 
 ## How to use it on your alexa
-We're waiting for certification from Amazon before the skill is available in the Alexa store.
-
+You can install [the skill from the Amazon Store](https://www.amazon.co.uk/dp/B074R5X41G/). 
 
 ## How it works
 
