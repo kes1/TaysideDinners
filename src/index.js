@@ -31,6 +31,7 @@ const weeks = {
     4:['14082017','11092017','06112017','04122017','29012018','26022018','26032018']
 };
 const menu ={
+    primary:{
     // week[(day)[menu options that week - option 1, option 2, veggie_choice, sandwich]]
     // [Red Choice, Blue Choice, Green Choice, Yellow Choice ]
     1:[     
@@ -61,44 +62,59 @@ const menu ={
         ['Winter Vegetable Soup','Beef Burger Roll','Sweet Chilli Chicken','Vegetable Nuggets','Tuna Mayo Wrap'],//Thurs
         ['Chicken Fajita','Breaded Fish','Macaroni Cheese','Ham Sandwich'] //Fri
         ]
-    
-    
-};
-
-function getMenuCard(menuArray, date){
-    var card = {};
-    card.title = date.toLocaleDateString('en-GB', { weekday: 'long' }) + " School Menu";
-    card.text = menuArray.join('\n');
-    card.imageObj = {
-    smallImageUrl: 'http://www.tayside-contracts.co.uk/_assets/_img/logo.gif',
-    largeImageUrl: 'http://www.tayside-contracts.co.uk/_assets/_img/logo.gif'
-};
-    return card;
-}
-
-
-const handlers = {
-    'LaunchRequest': function () {
-        this.emit(':ask',"Hi, you can ask what's for lunch?");
     },
-    'getLunchMenu': function(){
-        try {
-        // Get Date requested from Slot - default to today. 
-        var req_date;
-        if ( !this.event.request.intent.slots.Date || this.event.request.intent.slots.Date.value == ''||this.event.request.intent.slots.Date.value == undefined) {
-        req_date = new Date();
-        }
-        else{
-            req_date = new Date(this.event.request.intent.slots.Date.value);
-        }
-        var req_monday = new Date(req_date.getTime());
+    secondary:
+    {
+        1:[ // Vege still always option 3.
+            ["Chicken Curry", "Fishcake", "Quorn Curry"], //Mon
+            ["Oven Baked Sausages &amp; Gravy","BBQ Chicken","Macaroni Cheese"], //Tue
+            ["Traditional Mince","Scampi","Vegetable Calzone"], //Wed
+            ["Pork Steak & Gravy","Tortilla Chicken Lasagne","VegeBalls with BBQ Sauce"], //Thurs
+            ["Chicken Jambalaya","Breaded Fish",] //Fri
+        ],
+        2:[
+            ["Meatballs in Tomato Sauce","Chicken &amp; Gravy Pie","Macaroni Cheese"],
+            ["Bolognese Mince", "Fish Goujons","Curried Quorn Wrap"],
+            ["Roast Beef, Gravy &amp; Yorkshire Pudding", "Moroccan Chicken","Vegetable &amp; Chickpea stew"],
+            ["Chicken Curry","Pork Casserole","Vegetable Frittata"],
+            ["Oven Baked Sausages","Breaded Fish","Brocolli Pasta Bake"]
+        ],
+        3:[
+            ["Chicken Chorizo Pasta","Fish Pie","Quorn, Gravy &amp; Yorkshire Pudding"],
+            ["Oven Baked Sausages &amp; Gravy","Savoury Chicken Rice","Vegetable Calzone"],
+            ["Steak Pie","Teriyaki Salmon","Vegetable Curry"],
+            ["Chicken Nuggets and Dip","Mild Beef Chilli","Macaroni Cheese"],
+            ["Sweet n Sour Chicken","Breaded Fish","Cheese & Potato Cake"]
+        ],
+        4:[
+            ["Meatballs in Tomato Sauce","Gammon Steak with Pineapple","Tomato Pasta Bake"],
+            ["Chinese Chicken Curry","Jumbo Fish Fingers","Vegeball Wrap"],
+            ["Cottage Pie","Creamy Ham Pasta","Vegetable Jambalaya"],
+            ["Oven Baked Sausages &amp; Gravy","Sweet Chilli Chicken","Vegetable Nuggets &amp; Dip"],
+            ["Chicken Fajita","Breaded Fish","Macaroni Cheese"]
+        ]
+        
+    }
+    
+};
+
+const taysideMenus = {
+    getMenuCard : function(menuArray, date)
+    {       // Receives meal array, and simply parses to a list of menu items.
+            var card = {};
+            card.title = date.toLocaleDateString('en-GB', { weekday: 'long' }) + " School Menu";
+            card.text = menuArray.join('\n');
+            card.imageObj = {
+            smallImageUrl: 'http://www.tayside-contracts.co.uk/_assets/_img/logo.gif',
+            largeImageUrl: 'http://www.tayside-contracts.co.uk/_assets/_img/logo.gif'
+            };
+    return card;
+    },
+    getMenuWeek : function(req_date){
+         var req_monday = new Date(req_date.getTime());
         if (req_date.getDay() !== 1)
         {
             req_monday.setDate(req_date.getDate()-req_date.getDay()+1); // Snap to Monday to find wk.
-        }
-        if (req_date.getDay() == 0 ||req_date.getDay() == 6){
-            this.emit(':ask',"Sorry schools closed at the weekend. Try asking what's for lunch on Monday.");    
-            return;        
         }
     
         var s_req_monday = ('0' + req_monday.getDate()).slice(-2) + ('0' + (req_monday.getMonth()+1)).slice(-2) + req_monday.getFullYear();// Monday of the week requested
@@ -113,11 +129,39 @@ const handlers = {
                break;
            }
        }
+       return req_week;
+        
+        // Returns a week number (1 to 4)
+    }
+    
+}
+
+
+const handlers = {
+    'LaunchRequest': function () {
+        this.emit(':ask',"Hi, you can ask what's for lunch?");
+    },
+    'getLunchMenu': function(){
+        try {
+        // Get Date requested from Slot - default to today. 
+        var req_date;
+        if ( !this.event.request.intent.slots.Date || this.event.request.intent.slots.Date.value == ''||this.event.request.intent.slots.Date.value == undefined) {
+        req_date = new Date();
+        console.log("Blank Date Given, using " + req_date.toISOString())
+        }
+        else{
+            req_date = new Date(this.event.request.intent.slots.Date.value);
+        }
+         if (req_date.getDay() == 0 ||req_date.getDay() == 6){
+            this.emit(':ask',"Sorry schools closed at the weekend. Try asking what's for lunch on Monday.");    
+            return;        
+            }
+        var req_week = taysideMenus.getMenuWeek(req_date);
     
     if (req_week > 0)
     {
 
-       var mealsArray = menu[req_week][req_date.getDay()-1];
+       var mealsArray = menu.primary[req_week][req_date.getDay()-1];
        // Get meals
        var mealString = "You can choose from ";
        
@@ -126,7 +170,7 @@ const handlers = {
            mealString = mealString + mealsArray[i] + ", ";
        }
        mealString = mealString + " or a " +  mealsArray[i];
-       var menuCard = getMenuCard(mealsArray, req_date);
+       var menuCard = taysideMenus.getMenuCard(mealsArray, req_date);
        this.emit(':tellWithCard',mealString, menuCard.title, menuCard.text); 
        }
        else
