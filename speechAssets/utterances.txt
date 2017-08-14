@@ -1,0 +1,10 @@
+what's for lunch
+whats for dinner
+what is for lunch
+what is for dinner
+what's for dinner
+what can i eat today
+what can i eat at lunch
+what's for lunch on {Date}
+whats for dinner on {Date}
+what's for lunch {Date}
