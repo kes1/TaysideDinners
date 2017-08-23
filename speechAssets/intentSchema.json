@@ -31,8 +31,97 @@
           "name": "Date",
           "type": "AMAZON.DATE",
           "samples": []
+        },
+        {
+          "name": "school_level",
+          "type": "SCHOOL_LEVEL",
+          "samples": [
+            "{school_level}"
+          ]
         }
       ]
     }
-  ]
+  ],
+  "types": [
+    {
+      "name": "SCHOOL_LEVEL",
+      "values": [
+        {
+          "id": null,
+          "name": {
+            "value": "primary",
+            "synonyms": [
+              "primary school",
+              "special",
+              "special school",
+              "kingspark",
+              "kings park"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "secondary",
+            "synonyms": [
+              "big school",
+              "academy",
+              "the academy",
+              "high school",
+              "secondary school"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "prompts": [
+    {
+      "id": "Elicit.Intent-getLunchMenu.IntentSlot-school_level",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Are you at primary or secondary school?"
+        },
+        {
+          "type": "PlainText",
+          "value": "Do you go to primary or secondary school?"
+        },
+        {
+          "type": "PlainText",
+          "value": "Would you like the menu for primary or high school?"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "version": "1.0",
+    "intents": [
+      {
+        "name": "getLunchMenu",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "Date",
+            "type": "AMAZON.DATE",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          },
+          {
+            "name": "school_level",
+            "type": "SCHOOL_LEVEL",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-getLunchMenu.IntentSlot-school_level"
+            }
+          }
+        ]
+      }
+    ]
+  }
 }

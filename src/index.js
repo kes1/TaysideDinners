@@ -14,6 +14,39 @@ const Alexa = require('alexa-sdk');
 
 const APP_ID = undefined;  //APP_ID here. 
 
+// Helper Function from Alexa Cookbook. 
+function sayArray(myData, andor) {
+    // the first argument is an array [] of items
+    // the second argument is the list penultimate word; and/or/nor etc.
+
+    var listString = '';
+
+    if (myData.length == 1) {
+        listString = myData[0];
+    } else {
+        if (myData.length == 2) {
+            listString = myData[0] + ' ' + andor + ' ' + myData[1];
+        } else {
+
+            for (var i = 0; i < myData.length; i++) {
+                if (i < myData.length - 2) {
+                    listString = listString + myData[i] + ', ';
+                    if (i = myData.length - 2) {
+                        listString = listString + myData[i] + ', ' + andor + ' ';
+                    }
+
+                } else {
+                    listString = listString + myData[i];
+                }
+
+            }
+        }
+
+    }
+
+    return(listString);
+}
+
 
 
 // Menu details. These could be taken from a database but are static for the school year. 
@@ -79,13 +112,7 @@ const menu ={
             ["Chicken Curry","Pork Casserole","Vegetable Frittata"],
             ["Oven Baked Sausages","Breaded Fish","Brocolli Pasta Bake"]
         ],
-        3:[
-            ["Chicken Chorizo Pasta","Fish Pie","Quorn, Gravy &amp; Yorkshire Pudding"],
-            ["Oven Baked Sausages &amp; Gravy","Savoury Chicken Rice","Vegetable Calzone"],
-            ["Steak Pie","Teriyaki Salmon","Vegetable Curry"],
-            ["Chicken Nuggets and Dip","Mild Beef Chilli","Macaroni Cheese"],
-            ["Sweet n Sour Chicken","Breaded Fish","Cheese & Potato Cake"]
-        ],
+        3:[],
         4:[
             ["Meatballs in Tomato Sauce","Gammon Steak with Pineapple","Tomato Pasta Bake"],
             ["Chinese Chicken Curry","Jumbo Fish Fingers","Vegeball Wrap"],
@@ -143,6 +170,8 @@ const handlers = {
     },
     'getLunchMenu': function(){
         try {
+        // START Slot and Variable Handling ************    
+            
         // Get Date requested from Slot - default to today. 
         var req_date;
         if ( !this.event.request.intent.slots.Date || this.event.request.intent.slots.Date.value == ''||this.event.request.intent.slots.Date.value == undefined) {
@@ -153,17 +182,36 @@ const handlers = {
             req_date = new Date(this.event.request.intent.slots.Date.value);
         }
          if (req_date.getDay() == 0 ||req_date.getDay() == 6){
-            this.emit(':ask',"Sorry schools closed at the weekend. Try asking what's for lunch on Monday.");    
+            this.emit(':ask',"Sorry schools closed at the weekend. Try asking what's for lunch on Monday. I love Mondays!");    
             return;        
             }
+            this.attributes.req_date = req_date;
+        if (!this.event.request.intent.slots.school_level || this.event.request.intent.slots.school_level.value == ''||this.event.request.intent.slots.school_level.value == undefined) {
+         
+         console.log(this.event.request.intent.slots.school_level.value);
+         this.emit(':elicitSlot', "school_level", "Are you at primary or secondary school?", "Do you go to primary school or the high school?");
+        }
+        else {
+            this.attributes.school_level = this.event.request.intent.slots.school_level.resolutions.resolutionsPerAuthority[0].values[0].value.name; 
+            var school_level = this.attributes.school_level;
+        }
+        // END ********* Slot and Variable Handling *****************    
         var req_week = taysideMenus.getMenuWeek(req_date);
-    
+        
     if (req_week > 0)
     {
 
-       var mealsArray = menu.primary[req_week][req_date.getDay()-1];
+       var mealsArray = menu[school_level][req_week][req_date.getDay()-1];
        // Get meals
-       var mealString = "You can choose from ";
+       var mealString = "You can choose ";
+       if (school_level == 'primary'){
+           // Slice array to ditch the sandwich.
+           mealsArray = mealsArray.slice(0,3);
+       }
+       else
+       {
+           // Drop desert. 
+       }
        
        for (var i=0;i< mealsArray.length-1;i++)
        {
@@ -181,6 +229,7 @@ const handlers = {
         catch(e){
             // Unhandled Exception
             this.emit(':tell',"I'm sorry something went wrong checking the menu, please try again later.");
+            console.log(e.message);
         }
     },
     
