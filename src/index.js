@@ -65,35 +65,35 @@ const weeks = {
 };
 const menu ={
     primary:{
-    // week[(day)[menu options that week - option 1, option 2, veggie_choice, sandwich]]
-    // [Red Choice, Blue Choice, Green Choice, Yellow Choice ]
+    // week[(day)[menu options that week - option 1, option 2, veggie_choice, sandwich, desert (or fruit selection)]]
+    // [Red Choice, Blue Choice, Green Choice, Yellow Choice, last option (or fruit selection) ]
     1:[     
-        ['Chicken Curry','Fishcake','Hot Dog Roll','Ham Sandwich'], //Mon
-        ['Oven Baked Sausages in Gravy','BBQ Chicken','Macaroni Cheese','Roast Beef Sandwich'], //Tues
-        ['Traditional Mince','Fish Goujons','Cheese and Tomato Pizza','Chicken Mayo Wrap'], //Wed
-        ['Beef Burger Roll','Tortilla Chicken Lasagne','VegeBalls with BBQ Sauce','Tuna Mayo Sandwich'], //Thurs
-        ['Baked Baked Potato', 'Breaded Fish','Savoury Rice','Turkey Roll']
+        ['Chicken Curry','Fishcake','Hot Dog Roll','Ham Sandwich','Ice cream with Fuity Sauce and wafer'], //Mon
+        ['Oven Baked Sausages in Gravy','BBQ Chicken','Macaroni Cheese','Roast Beef Sandwich','Tiffin'], //Tues
+        ['Traditional Mince','Fish Goujons','"Cheese and Tomato Pizza"','Chicken Mayo Wrap',"St Clements Sponge with Custard"], //Wed
+        ['Beef Burger Roll','Tortilla Chicken Lasagne','VegeBalls with BBQ Sauce','Tuna Mayo Sandwich',"Fruit"], //Thurs
+        ['Baked Potato', 'Breaded Fish','Savoury Rice','Turkey Roll',"Chocolate Muffin"]
     ],
     2:[
-        ['Meatballs in Tomato Sauce','Fishcake'],
-        ['Lentil Soup','Bolognese Mince'],
-        ['Roast Beef, Gravy and Yorkshire Pudding','Moroccan Chicken'],
-        ['Chicken Burger Roll','Pork Casserole'],
-        ['Oven Baked Sausages','Breaded Fish']
+        ['Meatballs in Tomato Sauce','Chicken and Gravy Pie','Macaroni Cheese','Ham Sandwich','Banoffee Sponge'],
+        ['Bolognese Mince','Fish Fingers','Curried Quorn Wrap','Cheese Mayo Roll','Fruit'],
+        ['Roast Beef, Gravy and Yorkshire Pudding','Moroccan Chicken','Cheese and Tomato Pizza','Turkey Sandwich','Caramel Shortbread'],
+        ['Chicken Burger Roll','Pork Casserole','Vegetable Frittata','Tuna Mayo Wrap','Choclate Brownie with Custard'],
+        ['Oven Baked Sausages','Breaded Fish','Brocolli Pasta Bake','Chicken Roll','Rice Pudding with Mandarins']
     ],
     3:[
-        ['Turkey Burger Roll','Fish Pie'],
-        ['Oven Baked Sausages in Gravy'],
-        ['Steak Pie'],
-        ['Chicken Nuggets'],
-        ['Sweet n Sour Chicken']
+        ['Turkey Burger Roll','Fish Pie','Quorn, Gravy and Yorkshire Pudding','Cheese Sandwich','Chocolate Cookie'],
+        ['Baked Sausages in Gravy','Savoury Chicken Rice','Cheese and tomato Pizza','Turkey Sandwich','Waffles with Peaches'],
+        ['Steak Pie','Fish Goujons','Vegetable Curry','Coronation Chicken Wrap','Lemon Drizzle Sponge with Custard'],
+        ['Chicken Nuggets','Mild Beef Chilli','Macaroni Cheese','Tuna Mayo Sandwich','Fruit'],
+        ['Sweet n Sour Chicken','Breaded Fish','Cheese and Potato Cake','Ham Roll','Cheese with Crackers']
         ],
     4:[
-        ['Sausage Roll','Tuna Mayo Baked Potato','Tomato Pasta','Turkey Sandwich'], // Mon
-        ['Chinese Chicken Curry','Fish Fingers','VegeBall Wrap','Cheese Roll'], // Tues
-        ['Cottage Pie','Creamy Ham Pasta','"Cheese and Tomato Pizza"','Chicken Sandwich'],//Wed
-        ['Winter Vegetable Soup','Beef Burger Roll','Sweet Chilli Chicken','Vegetable Nuggets','Tuna Mayo Wrap'],//Thurs
-        ['Chicken Fajita','Breaded Fish','Macaroni Cheese','Ham Sandwich'] //Fri
+        ['Sausage Roll','Tuna Mayo Baked Potato','Tomato Pasta','Turkey Sandwich','Shortbread'], // Mon
+        ['Chinese Chicken Curry','Fish Fingers','VegeBall Wrap','Cheese Roll','Chocolate Brownie'], // Tues
+        ['Cottage Pie','Creamy Ham Pasta','"Cheese and Tomato Pizza"','Chicken Sandwich','Jelly with Fruit'],//Wed
+        ['Beef Burger Roll','Sweet Chilli Chicken','Vegetable Nuggets','Tuna Mayo Wrap','Fruit Selection'],//Thurs
+        ['Chicken Fajita','Breaded Fish','Macaroni Cheese','Ham Sandwich','Pear and Honey Muffin'] //Fri
         ]
     },
     secondary:
@@ -112,7 +112,13 @@ const menu ={
             ["Chicken Curry","Pork Casserole","Vegetable Frittata"],
             ["Oven Baked Sausages","Breaded Fish","Brocolli Pasta Bake"]
         ],
-        3:[],
+        3:[
+            ["Chicken Chorizo Pasta", "Fish Pie","Quorn, Gravy and Yorkshire Pudding"],
+            ["Oven Baked Sausages and Gravy","Savoury Chicken Rice","Vegetable Calzone"],
+            ["Steak Pie","Teriyaki Salmon","Vegetable Curry"],
+            ["Chicken Nuggets and Dip","Mild Beef Chilli","Macaroni Cheese"],
+            ["Sweet n Sour Chicken","Breaded Fish","Cheese and Potato Cake"]
+        ]
         4:[
             ["Meatballs in Tomato Sauce","Gammon Steak with Pineapple","Tomato Pasta Bake"],
             ["Chinese Chicken Curry","Jumbo Fish Fingers","Vegeball Wrap"],
