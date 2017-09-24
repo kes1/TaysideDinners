@@ -102,8 +102,8 @@ const menu ={
             ["Chicken Curry", "Fishcake", "Quorn Curry"], //Mon
             ["Oven Baked Sausages &amp; Gravy","BBQ Chicken","Macaroni Cheese"], //Tue
             ["Traditional Mince","Scampi","Vegetable Calzone"], //Wed
-            ["Pork Steak & Gravy","Tortilla Chicken Lasagne","VegeBalls with BBQ Sauce"], //Thurs
-            ["Chicken Jambalaya","Breaded Fish",] //Fri
+            ["Pork Steak &amp; Gravy","Tortilla Chicken Lasagne","VegeBalls with BBQ Sauce"], //Thurs
+            ["Chicken Jambalaya","Breaded Fish","Savoury Rice"] //Fri
         ],
         2:[
             ["Meatballs in Tomato Sauce","Chicken &amp; Gravy Pie","Macaroni Cheese"],
@@ -209,6 +209,8 @@ const handlers = {
 
        var mealsArray = menu[school_level][req_week][req_date.getDay()-1];
        // Get meals
+        
+        // TODO Randomise selections
        var mealString = "You can choose ";
        if (school_level == 'primary'){
            // Slice array to ditch the sandwich.
