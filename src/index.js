@@ -12,7 +12,7 @@
 
 const Alexa = require('alexa-sdk');
 
-const APP_ID = undefined;  //APP_ID here. 
+const APP_ID = 'amzn1.ask.skill.2c5a40a0-3cef-4815-b74c-8432129291bf';  //APP_ID here. 
 
 // Helper Function from Alexa Cookbook. 
 function sayArray(myData, andor) {
@@ -118,7 +118,7 @@ const menu ={
             ["Steak Pie","Teriyaki Salmon","Vegetable Curry"],
             ["Chicken Nuggets and Dip","Mild Beef Chilli","Macaroni Cheese"],
             ["Sweet n Sour Chicken","Breaded Fish","Cheese and Potato Cake"]
-        ]
+        ],
         4:[
             ["Meatballs in Tomato Sauce","Gammon Steak with Pineapple","Tomato Pasta Bake"],
             ["Chinese Chicken Curry","Jumbo Fish Fingers","Vegeball Wrap"],
@@ -191,16 +191,22 @@ const handlers = {
             this.emit(':ask',"Sorry schools closed at the weekend. Try asking what's for lunch on Monday. I love Mondays!");    
             return;        
             }
-            this.attributes.req_date = req_date;
-        if (!this.event.request.intent.slots.school_level || this.event.request.intent.slots.school_level.value == ''||this.event.request.intent.slots.school_level.value == undefined) {
+            
+        this.attributes.req_date = req_date;
+        if (this.attributes.school_level){
+            var school_level = this.attributes.school_level;
+        }
+            else{
+            if (!this.event.request.intent.slots.school_level || this.event.request.intent.slots.school_level.value == ''||this.event.request.intent.slots.school_level.value == undefined) {
          
-         console.log(this.event.request.intent.slots.school_level.value);
+         //console.log(this.event.request.intent.slots.school_level.value);
          this.emit(':elicitSlot', "school_level", "Are you at primary or secondary school?", "Do you go to primary school or the high school?");
         }
         else {
             this.attributes.school_level = this.event.request.intent.slots.school_level.resolutions.resolutionsPerAuthority[0].values[0].value.name; 
             var school_level = this.attributes.school_level;
         }
+            }
         // END ********* Slot and Variable Handling *****************    
         var req_week = taysideMenus.getMenuWeek(req_date);
         
@@ -254,10 +260,11 @@ const handlers = {
     },
 };
 
-exports.handler = function (event, context) {
-    const alexa = Alexa.handler(event, context);
+exports.handler = function (event, context, callback) {
+    const alexa = Alexa.handler(event, context, callback);
     alexa.APP_ID = APP_ID;
     // To enable string internationalization (i18n) features, set a resources object.
+    alexa.dynamoDBTableName  = 'tayside_dinners_users';    
     alexa.registerHandlers(handlers);
     alexa.execute();
 
