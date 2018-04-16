@@ -12,7 +12,7 @@
 
 const Alexa = require('alexa-sdk');
 
-const APP_ID = 'amzn1.ask.skill.2c5a40a0-3cef-4815-b74c-8432129291bf';  //APP_ID here. 
+const APP_ID = ''  //APP_ID here. 
 
 // Helper Function from Alexa Cookbook. 
 function sayArray(myData, andor) {
@@ -52,79 +52,79 @@ function sayArray(myData, andor) {
 // Menu details. These could be taken from a database but are static for the school year. 
 const menu_exceptions = {
     // Special days that have special dishes that replace the choice indexed.
-    30112017 : ['Corned Beef Stovies'], // These replace red choice.
+    30112017 : ['Corned Beef Stovies'], // These replace red choice.  Don't see any for 2018/19?
     25012018 : ['Haggis']
 };
 
 const weeks = {
     // Week in rotation : [Dates of the Saturday of that week] 
-    1: ['21082017','18092017','16102017','13112017','11122017','08012018','0502018','05032018'],
-    2:['28082017','25092017','23102017','23102017','20112017','18122017','15012018','15012018','12022018','12032018'],
-    3:['04092017','02102017','30102017','30102017','27112017','22012018','19022018','19032018'],
-    4:['14082017','11092017','06112017','04122017','29012018','26022018','26032018']
+    1:['30042018','28052018','25062018','20082018','17092018','15102018','12112018','10122018','07012019','04022019','04032019'],
+    2:['07052018','04062018','27082018','24092018','22102018','19112018','17122018','14012019','11022019','11032019'],
+    3:['16042018','14052018','11062018','03092018','01102018','29102018','26112018','21012019','18022019','18032019'],
+    4:['23042018','21052018','18062018','13082018','10092018','05112018','03122018','28012019','25022019','25032019']
 };
 const menu ={
     primary:{
     // week[(day)[menu options that week - option 1, option 2, veggie_choice, sandwich, desert (or fruit selection)]]
     // [Red Choice, Blue Choice, Green Choice, Yellow Choice, last option (or fruit selection) ]
     1:[     
-        ['Chicken Curry','Fishcake','Hot Dog Roll','Ham Sandwich','Ice cream with Fuity Sauce and wafer'], //Mon
-        ['Oven Baked Sausages in Gravy','BBQ Chicken','Macaroni Cheese','Roast Beef Sandwich','Tiffin'], //Tues
-        ['Traditional Mince','Fish Goujons','"Cheese and Tomato Pizza"','Chicken Mayo Wrap',"St Clements Sponge with Custard"], //Wed
-        ['Beef Burger Roll','Tortilla Chicken Lasagne','VegeBalls with BBQ Sauce','Tuna Mayo Sandwich',"Fruit"], //Thurs
-        ['Baked Potato', 'Breaded Fish','Savoury Rice','Turkey Roll',"Chocolate Muffin"]
+        ['Creamy Chicken Pie','Fish Fingers','Tomato Pasta','Cheese Sandwich'], //Mon
+        ['Chinese Chicken Curry','Homemade Salmon Fishcake','Cheese and Tomato Pizza','Ham Roll'], //Tues
+        ['Cottage Pie','Chicken Noodles','Macaroni Cheese','Tuna Mayo Sandwich','Tiffin'], //Wed
+        ['Sausages','Baked Potato with Beans','Vegetable Curry','Hummus and Red Pepper Wrap'], //Thurs
+        ['Beef Burger in a bun','Breaded Fish','Chinese Style Rice with Mushrooms','Turkey Sandwich','Banana and Chocolate Sponge']
     ],
     2:[
-        ['Meatballs in Tomato Sauce','Chicken and Gravy Pie','Macaroni Cheese','Ham Sandwich','Banoffee Sponge'],
-        ['Bolognese Mince','Fish Fingers','Curried Quorn Wrap','Cheese Mayo Roll','Fruit'],
-        ['Roast Beef, Gravy and Yorkshire Pudding','Moroccan Chicken','Cheese and Tomato Pizza','Turkey Sandwich','Caramel Shortbread'],
-        ['Chicken Burger Roll','Pork Casserole','Vegetable Frittata','Tuna Mayo Wrap','Choclate Brownie with Custard'],
-        ['Oven Baked Sausages','Breaded Fish','Brocolli Pasta Bake','Chicken Roll','Rice Pudding with Mandarins']
+        ['Sausage Roll','Savoury Rice with Chicken','Quorn Cottage Pie','Tuna May Sandwich','Shortbread Biscuit'],
+        ['Pork Meatballs with Tomato Sauce','Chicken Nuggets','Chickpea Potato Cake','Cheese Sandwich','Frozen Yoghurt'],
+        ['Steak Casserole','Baked Potato with Tuna Mayo','Cheese and Tomato Pizza','Turkey Sandwich'],
+        ['Roast Beef, Gravy with Yorkshire Pudding','Chicken Burrito','Macaroni Cheese','Ham Sandwich','Chocolate Sponge'],
+        ['Turkey Burger in a Bun','Breaded Fish','Vegetable Noodles','Chicken Mayo Roll']
     ],
     3:[
-        ['Turkey Burger Roll','Fish Pie','Quorn, Gravy and Yorkshire Pudding','Cheese Sandwich','Chocolate Cookie'],
-        ['Baked Sausages in Gravy','Savoury Chicken Rice','Cheese and tomato Pizza','Turkey Sandwich','Waffles with Peaches'],
-        ['Steak Pie','Fish Goujons','Vegetable Curry','Coronation Chicken Wrap','Lemon Drizzle Sponge with Custard'],
-        ['Chicken Nuggets','Mild Beef Chilli','Macaroni Cheese','Tuna Mayo Sandwich','Fruit'],
-        ['Sweet n Sour Chicken','Breaded Fish','Cheese and Potato Cake','Ham Roll','Cheese with Crackers']
+        ['Chicken Casserole','Fish Fingers','Quorn Tortilla Lasagne','Cheese Sandwich','Ice cream with Berry Sauce'],
+        ['Ham Ommelette','Chicken Curry','Cheese and Tomato Pizza','Roast Beef Sandwich'],
+        ['Sausages with Gravy','Baked Potato with Beef Chilli','Broccoli Pasta Bake','Tuna Mayo Sandwich'],
+        ['Chicken Nuggets','Minced Beef','Vegetable Bean Burger in a bun','Ham Sandwich'],
+        ['Beef Burger in a Bun','Fish Goujons','Quorn Sausages in Gravy','Turkey Sandwich','Oat and Apple Muffin']
         ],
     4:[
-        ['Sausage Roll','Tuna Mayo Baked Potato','Tomato Pasta','Turkey Sandwich','Shortbread'], // Mon
-        ['Chinese Chicken Curry','Fish Fingers','VegeBall Wrap','Cheese Roll','Chocolate Brownie'], // Tues
-        ['Cottage Pie','Creamy Ham Pasta','"Cheese and Tomato Pizza"','Chicken Sandwich','Jelly with Fruit'],//Wed
-        ['Beef Burger Roll','Sweet Chilli Chicken','Vegetable Nuggets','Tuna Mayo Wrap','Fruit Selection'],//Thurs
-        ['Chicken Fajita','Breaded Fish','Macaroni Cheese','Ham Sandwich','Pear and Honey Muffin'] //Fri
+        ['Sweet and Sour Chicken','Fish Fingers','Quorn Dog Roll','Cheese Sandwich','Frozen Yoghurt'], // Mon
+        ['Chicken, Gravy with Yorkshiire Pudding','Meatballs in a Moroccan Sauce','Macaroni Cheese','Turkey Sandwich','Jelly and Fruit'], // Tues
+        ['Steak Pie','Chicken Biryani','Cheese and Tomato Pizza','Ham Sandwich'],//Wed
+        ['Spaghetti Bolognese','Breaded Fish','Vegetable Omelette','Tuna Mayo Sandwich','Golden Crunch'],//Thurs
+        ['Chicken Burger in a Bun','Baked Potato with Tuna Mayo','Chilli Quorn Burrito','Chicken Sandwich', 'Cheese and Crackers'] //Fri
         ]
-    },
+    },// Primary updated for new school year - 2018
     secondary:
     {
         1:[ // Vege still always option 3.
-            ["Chicken Curry", "Fishcake", "Quorn Curry"], //Mon
-            ["Oven Baked Sausages &amp; Gravy","BBQ Chicken","Macaroni Cheese"], //Tue
-            ["Traditional Mince","Scampi","Vegetable Calzone"], //Wed
-            ["Pork Steak &amp; Gravy","Tortilla Chicken Lasagne","VegeBalls with BBQ Sauce"], //Thurs
-            ["Chicken Jambalaya","Breaded Fish","Savoury Rice"] //Fri
+            ["Creamy Chicken Pie",'Fish Fingers','Tomato Pasta'], //Mon
+            ['Chinese Chicken Curry','Homemade Salmon Fishcake','Vegetable Calzone'], //Tue
+            ['Cottage Pie','Chicken Chow Mein','Macaroni Cheese'], //Wed
+            ['Sausages','Moroccan Chicken','Vegetable Curry'], //Thurs
+            ['Chicken Lasagne','Breaded Fish'] //Fri
         ],
         2:[
-            ["Meatballs in Tomato Sauce","Chicken &amp; Gravy Pie","Macaroni Cheese"],
-            ["Bolognese Mince", "Fish Goujons","Curried Quorn Wrap"],
-            ["Roast Beef, Gravy &amp; Yorkshire Pudding", "Moroccan Chicken","Vegetable &amp; Chickpea stew"],
-            ["Chicken Curry","Pork Casserole","Vegetable Frittata"],
-            ["Oven Baked Sausages","Breaded Fish","Brocolli Pasta Bake"]
+            ['Pork Steak with Onion Gravy','Savoury Rice with Chicken','Quorn Cottage Pie'],
+            ['Chicken Tikka Masala','Pork Meatballs in Tomato Sauce','Chickpea Potato Cake'],
+            ['Steak Casserole','Scampi','Mexicorn Omelette'],
+            ['Roast Beef, Gravy and Yorkshire Pudding','Chicken Burrito','Macaroni Cheese'],
+            ['Sweet Chilli Chicken','Breaded Fish','Vegetable Chow Mein']
         ],
         3:[
-            ["Chicken Chorizo Pasta", "Fish Pie","Quorn, Gravy and Yorkshire Pudding"],
-            ["Oven Baked Sausages and Gravy","Savoury Chicken Rice","Vegetable Calzone"],
-            ["Steak Pie","Teriyaki Salmon","Vegetable Curry"],
-            ["Chicken Nuggets and Dip","Mild Beef Chilli","Macaroni Cheese"],
-            ["Sweet n Sour Chicken","Breaded Fish","Cheese and Potato Cake"]
+            ['Chicken Chorizo Pasta','Fish Fingers','Quorn Tortilla Lasagne'],
+            ["Ham Fritatta",'Chicken Curry','Vegetable Calzone'],
+            ['Sausages in Gravy','Beef Chilli','Broccoli Pasta Bake'],
+            ['Hunters Chicken','Minced Beef','Homemade Bean Burger Roll'],
+            ['Spaghetti Carbonara','Breaded Fish','Quorn Sausages in Gravy']
         ],
         4:[
-            ["Meatballs in Tomato Sauce","Gammon Steak with Pineapple","Tomato Pasta Bake"],
-            ["Chinese Chicken Curry","Jumbo Fish Fingers","Vegeball Wrap"],
-            ["Cottage Pie","Creamy Ham Pasta","Vegetable Jambalaya"],
-            ["Oven Baked Sausages &amp; Gravy","Sweet Chilli Chicken","Vegetable Nuggets &amp; Dip"],
-            ["Chicken Fajita","Breaded Fish","Macaroni Cheese"]
+            ['Sweet and Sour Chicken','Fish Fingers','Veggie Sweet Chilli Noodles'],
+            ['Chicken, Gravy and Yorkshire','Pork Meatballs in Moroccan Sauce','Macaroni Cheese'],
+            ['Steak Pie','Chicken Biryani','Roasted Pepper Calzone'],
+            ['Bolognese Mince','Breaded Fish','Vegetable Omelette'],
+            ['Gammon Steak and Pineapple','Piri Piri Chicken Stir Fly','Chilli Quorn Burrito']
         ]
         
     }
@@ -175,6 +175,8 @@ const handlers = {
         this.emit(':ask',"Hi, you can ask what's for lunch?");
     },
     'getLunchMenu': function(){
+        //this.emit(':tell',"We are updating our menus for the new term, please try again after the holidays.");
+        //return;
         try {
         // START Slot and Variable Handling ************    
             
@@ -237,7 +239,7 @@ const handlers = {
        }
        else
        {
-           this.emit(':ask', "Sorry I couldn't find a meal for the <say-as interpret-as='date' format='dm'>" + req_date+ "</say-as> can you ask for a different day?", "Try asking what's for lunch on Monday?");
+           this.emit(':ask', "Sorry I couldn't find a meal for that date, are you sure it's a school day?", "Try asking what's for lunch on Monday?");
        }
         }
         catch(e){
