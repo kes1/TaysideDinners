@@ -16,10 +16,8 @@ The school menu runs for 12 months on a 4 week rotation, so the dates and menu i
 
 ## Want to try your own?
 
-We've licenced this skill under the AGPL licence, feel free to take it as an example and play.  
+I've licenced this skill under the AGPL licence, feel free to take it as an example and play.  
 
-There'll be lots more data and examples like this coming to our data platform this October so thinking caps on. :bulb:
-
-Pull requests welcome!
+Pull requests welcome and let me and @opendundee know how you get on, you can search [data.dundeecity.gov.uk](https://data.dundeecity.gov.uk) for more data to play with and submit any of your work to be featured on the site.
 
 Skill developed by [kes1](https://github.com/kes1/) with data from [@opendundee](https://twitter.com/opendundee).
