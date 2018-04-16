@@ -4,7 +4,7 @@ An Alexa Skill to find out what's for lunch in Tayside schools.
 This is a simple app to show what you can do when re-using data about the city's services. 
 
 ## How to use it on your alexa
-You can install [the skill from the Amazon Store](https://www.amazon.co.uk/dp/B074R5X41G/). 
+You can install [the skill from the Amazon Store](https://www.amazon.co.uk/dp/B074R5X41G/).  _Now updated with 2018/19 school menus_. 
 
 ## How it works
 
@@ -22,4 +22,4 @@ There'll be lots more data and examples like this coming to our data platform th
 
 Pull requests welcome!
 
-[@opendundee](https://twitter.com/opendundee)
+Skill developed by [kes1](https://github.com/kes1/) with data from [@opendundee](https://twitter.com/opendundee).
