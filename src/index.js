@@ -57,22 +57,22 @@ const menu_exceptions = {
 };
 
 const weeks = {
-    // Week in rotation : [Dates of the Saturday of that week] 
-    1:['30042018','28052018','25062018','20082018','17092018','15102018','12112018','10122018','07012019','04022019','04032019'],
-    2:['07052018','04062018','27082018','24092018','22102018','19112018','17122018','14012019','11022019','11032019'],
-    3:['16042018','14052018','11062018','03092018','01102018','29102018','26112018','21012019','18022019','18032019'],
-    4:['23042018','21052018','18062018','13082018','10092018','05112018','03122018','28012019','25022019','25032019']
+    // Week in rotation : [Dates of the Monday of that week] 
+    1:['29042019','27052019','24062019','19082019','16092019','11112019','09122019','06012020','03022020','02032020','30032020'],
+    2:['06052019','03062019','26082019','23092019','21102019','18112019','16122019','13012020','10022020','09032020'],
+    3:['15042019','13052019','10062019','02092019','30092019','28102019','26112018','21012019','18022019','18032019'],
+    4:['22042019','20052019','17062019','12082019','09092019','04112019','02122019','27012020','24022020','23032020']
 };
 const menu ={
     primary:{
     // week[(day)[menu options that week - option 1, option 2, veggie_choice, sandwich, desert (or fruit selection)]]
     // [Red Choice, Blue Choice, Green Choice, Yellow Choice, last option (or fruit selection) ]
     1:[     
-        ['Creamy Chicken Pie','Fish Fingers','Tomato Pasta','Cheese Sandwich'], //Mon
-        ['Chinese Chicken Curry','Homemade Salmon Fishcake','Cheese and Tomato Pizza','Ham Roll'], //Tues
-        ['Cottage Pie','Chicken Noodles','Macaroni Cheese','Tuna Mayo Sandwich','Tiffin'], //Wed
-        ['Sausages','Baked Potato with Beans','Vegetable Curry','Hummus and Red Pepper Wrap'], //Thurs
-        ['Beef Burger in a bun','Breaded Fish','Chinese Style Rice with Mushrooms','Turkey Sandwich','Banana and Chocolate Sponge']
+        ['Chicken in Gravy','Fish Fingers','Quorn Fillet','Cheese Roll'], //Mon
+        ['Bolognese Meatballs','Popcorn Chicken','Bolognese Vegeballs','Tuna Mayo Roll'], //Tues
+        ['Chinese Rice with Chicken','Sausages','Chinese Rice with Mushrooms','Turkey Sandwich','Sponge with Berry Sauce'], //Wed
+        ['Mince with Doughballs','Turkey Burger','Quorn Mince with Doughballs','Chicken Sandwich'], //Thurs
+        ['Chicken Curry','Fish Bites','Vegetable Curry','Ham Roll','Cheese and Crackers']
     ],
     2:[
         ['Sausage Roll','Savoury Rice with Chicken','Quorn Cottage Pie','Tuna May Sandwich','Shortbread Biscuit'],
@@ -82,49 +82,49 @@ const menu ={
         ['Turkey Burger in a Bun','Breaded Fish','Vegetable Noodles','Chicken Mayo Roll']
     ],
     3:[
-        ['Chicken Casserole','Fish Fingers','Quorn Tortilla Lasagne','Cheese Sandwich','Ice cream with Berry Sauce'],
-        ['Ham Ommelette','Chicken Curry','Cheese and Tomato Pizza','Roast Beef Sandwich'],
-        ['Sausages with Gravy','Baked Potato with Beef Chilli','Broccoli Pasta Bake','Tuna Mayo Sandwich'],
-        ['Chicken Nuggets','Minced Beef','Vegetable Bean Burger in a bun','Ham Sandwich'],
-        ['Beef Burger in a Bun','Fish Goujons','Quorn Sausages in Gravy','Turkey Sandwich','Oat and Apple Muffin']
+        ['Chicken Fajita','Hot Dog Roll','Vegetable Fajita','Tuna Mayo Sandwich','Ice Cream with Berry Sauce'],
+        ['Chiken in Tomato Sauce with Pasta','Fish Fingers','Quorn in Tomato Sauce with Pasta','Cheese Roll'],
+        ['Chicken Mexican Rice','Cheese and Tomato Pizza','Veggie Mexican Rice','Doughnut'],
+        ['Tomato Soup','Steak Pie','Quorn Pie','Turkey Sandwich'],
+        ['Beef Burger','Baked Potato and Cheese','Veggie Bean Burger','Chicken Sandwich']
         ],
     4:[
-        ['Sweet and Sour Chicken','Fish Fingers','Quorn Dog Roll','Cheese Sandwich','Frozen Yoghurt'], // Mon
-        ['Chicken, Gravy with Yorkshiire Pudding','Meatballs in a Moroccan Sauce','Macaroni Cheese','Turkey Sandwich','Jelly and Fruit'], // Tues
-        ['Steak Pie','Chicken Biryani','Cheese and Tomato Pizza','Ham Sandwich'],//Wed
-        ['Spaghetti Bolognese','Breaded Fish','Vegetable Omelette','Tuna Mayo Sandwich','Golden Crunch'],//Thurs
-        ['Chicken Burger in a Bun','Baked Potato with Tuna Mayo','Chilli Quorn Burrito','Chicken Sandwich', 'Cheese and Crackers'] //Fri
+        ['Quorn Dog Roll','Cheese and Tomato Pizza','Baked Potato and Baked Beans','Sliced Egg Roll','Chocolate Sponge'], // Mon
+        ['Mince and Mashed Potatoes','Fish with Potato Wedges','Quorn Mince with Mashed Potatoes','Ham Finger Roll','Frozen Raspberry Yoghurt'], // Tues
+        ['Chicken Sausages','Vegetable Fingers','Macaroni Cheese','Tuna Mayo Sandwich'],//Wed
+        ['Chinese Chicken Curry','Lasagne','Chinese Vegetable Curry','Turkey Sandwich','Fruit Salad'],//Thurs
+        ['Chicken Burger in a Bun','Fishcake','Cheesy Vegetable Cake','Veggie Rainbow Wrap'] //Fri
         ]
-    },// Primary updated for new school year - 2018
+    },// Primary updated for new school year - 2019
     secondary:
     {
         1:[ // Vege still always option 3.
-            ["Creamy Chicken Pie",'Fish Fingers','Tomato Pasta'], //Mon
-            ['Chinese Chicken Curry','Homemade Salmon Fishcake','Vegetable Calzone'], //Tue
-            ['Cottage Pie','Chicken Chow Mein','Macaroni Cheese'], //Wed
-            ['Sausages','Moroccan Chicken','Vegetable Curry'], //Thurs
-            ['Chicken Lasagne','Breaded Fish'] //Fri
+            ["Chicken in Gravy",'Veggie Chow Mein','Quorn Fillet, Gravy and Yorkshire Pudding'], //Mon
+            ['Bolognese Meatballs','Hunters Chicken','Bolognese Vegeballs'], //Tue
+            ['Chinese Rice with Chicken','Sausages with Gravy','Chinese Rice with Mushrooms'], //Wed
+            ['Mince with Doughballs','Macaroni Cheese','Quorn Mince with Doughballs'], //Thurs
+            ['Chicken Curry','Breaded Fish', 'Vegetable Curry'] //Fri
         ],
         2:[
-            ['Pork Steak with Onion Gravy','Savoury Rice with Chicken','Quorn Cottage Pie'],
-            ['Chicken Tikka Masala','Pork Meatballs in Tomato Sauce','Chickpea Potato Cake'],
-            ['Steak Casserole','Scampi','Mexicorn Omelette'],
-            ['Roast Beef, Gravy and Yorkshire Pudding','Chicken Burrito','Macaroni Cheese'],
-            ['Sweet Chilli Chicken','Breaded Fish','Vegetable Chow Mein']
+            ['Tomato Pasta','Macaroni Cheese','Veggie Enchilada'],
+            ['Chinese Chicken Curry','Cottage Pie','Chinese Vegetable Curry'],
+            ['Ham Pizza','Chicken Gravy Pie','Cheese and Tomato Pizza'],
+            ['Roast Beef, Gravy and Yorkshire Pudding','Chicken Chow Mein','Quorn Fillet, Gravy and Yorkshire Pudding'],
+            ['Chicken Rice Jambalaya','Breaded Fish','Vegetable Rice Jambalaya']
         ],
         3:[
-            ['Chicken Chorizo Pasta','Fish Fingers','Quorn Tortilla Lasagne'],
-            ["Ham Fritatta",'Chicken Curry','Vegetable Calzone'],
-            ['Sausages in Gravy','Beef Chilli','Broccoli Pasta Bake'],
-            ['Hunters Chicken','Minced Beef','Homemade Bean Burger Roll'],
-            ['Spaghetti Carbonara','Breaded Fish','Quorn Sausages in Gravy']
+            ['Chicken Fajita','Macaroni Cheese','Vegetable Fajita'],
+            ["Chicken in Tomato Sauce",'Sausages','Quorn in Tomato Sauce'],
+            ['Chicken Mexican Rice','Fish Pie','Veggie Mexican Rice'],
+            ['Steak Pie','Creamy Chicken and Sweetcorn Pasta','Quorn Pie'],
+            ['Beef Burger','Breaded Fish','Veggie Bean burger in a bun']
         ],
         4:[
-            ['Sweet and Sour Chicken','Fish Fingers','Veggie Sweet Chilli Noodles'],
-            ['Chicken, Gravy and Yorkshire','Pork Meatballs in Moroccan Sauce','Macaroni Cheese'],
-            ['Steak Pie','Chicken Biryani','Roasted Pepper Calzone'],
-            ['Bolognese Mince','Breaded Fish','Vegetable Omelette'],
-            ['Gammon Steak and Pineapple','Piri Piri Chicken Stir Fly','Chilli Quorn Burrito']
+            ['Vegetable Nuggets','Cheese Frittata','Quorn Casserole'],
+            ['Traditional Mince','Thai Fishcake','Quorn Mince'],
+            ['Chicken Sausages','Vegetable Fingers','Macaroni Cheese'],
+            ['Chinese Chicken Curry','Lasagne','Chinese Vegetable Curry'],
+            ['BBQ Chicken','Breaded Fish','BBQ Beans']
         ]
         
     }
